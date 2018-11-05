@@ -6,4 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".Highscore">
 
+    <TextView
+        android:id="@+id/headline_HighScore"
+        android:layout_width="0dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="85dp"
+        android:layout_marginBottom="22dp"
+        android:text="Highscore"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/textfield_HighScore"
+        app:layout_constraintEnd_toEndOf="@+id/textfield_HighScore"
+        app:layout_constraintStart_toStartOf="@+id/textfield_HighScore"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textfield_HighScore"
+        android:layout_width="215dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="148dp"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headline_HighScore" />
+
 </android.support.constraint.ConstraintLayout>

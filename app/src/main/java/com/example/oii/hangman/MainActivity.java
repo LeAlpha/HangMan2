@@ -13,14 +13,16 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button startSpilKnap;
+    Button startSpilKnap, highscoreKnap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         startSpilKnap = findViewById(R.id.GoToGameButton);
+        highscoreKnap = findViewById(R.id.hsButton);
         startSpilKnap.setOnClickListener(this);
+        highscoreKnap.setOnClickListener(this);
     }
 
     @Override
@@ -29,6 +31,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent browser = new Intent(this , HangManSpil.class);
             startActivity(browser);
         }
-
+        else if (v == highscoreKnap) {
+            Intent browser = new Intent(this , Highscore.class);
+            startActivity(browser);
+        }
     }
 }

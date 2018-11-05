@@ -1,5 +1,7 @@
 package com.example.oii.hangman;
 
+import android.content.SharedPreferences;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,6 +21,8 @@ public class Logic {
     private boolean sidsteBogstavVarKorrekt;
     private boolean spilletErVundet;
     private boolean spilletErTabt;
+    SharedPreferences pm;
+    SharedPreferences.Editor editor;
 
 
 

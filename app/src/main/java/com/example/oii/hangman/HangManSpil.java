@@ -1,8 +1,10 @@
 package com.example.oii.hangman;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -19,13 +21,14 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
     EditText inputFelt;
     TextView wordSoFar, usedLetters;
     ImageView picture;
-
-
+    SharedPreferences pm;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hangmanspil);
+        pm = (SharedPreferences) PreferenceManager.getDefaultSharedPreferences(this);
 
 
         goKnap = findViewById(R.id.GoButton);
@@ -94,6 +97,7 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
                             dialog.cancel();
                         }
                     });
+                    builder.show();
                 }
                 else if(gameLogic.erSpilletVundet() == true){
 
@@ -108,8 +112,10 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
                             dialog.cancel();
                         }
                     });
+                    builder.show();
+
                 }
-                builder.show();
+
             }
         }
 
@@ -143,6 +149,32 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
         }
     }
 
+
+    public void setNewScore(int wordLength,int position, String name){
+        editor = pm.edit();
+        if(position == 1){
+            editor.putString(getString(R.string.H3_name), getString(R.string.H2_name));
+            editor.putString(getString(R.string.H2_name), getString(R.string.H1_name));
+            editor.putString(getString(R.string.H1_name), name);
+
+            editor.putInt((String.valueOf(R.integer.H3_Score)), R.integer.H2_Score);
+            editor.putInt((String.valueOf(R.integer.H2_Score)), R.integer.H1_Score);
+            editor.putInt((String.valueOf(R.integer.H1_Score)), wordLength);
+
+        } else if(position == 2){
+
+            editor.putString(getString(R.string.H3_name), getString(R.string.H2_name));
+            editor.putString(getString(R.string.H2_name), name);
+
+            editor.putInt((String.valueOf(R.integer.H3_Score)), R.integer.H2_Score);
+            editor.putInt((String.valueOf(R.integer.H2_Score)), wordLength);
+
+
+        } else if(position == 3) {
+            editor.putString(getString(R.string.H3_name), name);
+            editor.putInt((String.valueOf(R.integer.H3_Score)), wordLength);
+        }
+    }
 
 
 }
