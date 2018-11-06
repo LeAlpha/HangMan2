@@ -21,8 +21,8 @@ public class Logic {
     private boolean sidsteBogstavVarKorrekt;
     private boolean spilletErVundet;
     private boolean spilletErTabt;
-    SharedPreferences pm;
-    SharedPreferences.Editor editor;
+    private long startMillis, endMillis;
+
 
 
 
@@ -78,6 +78,7 @@ public class Logic {
         spilletErTabt = false;
         ordet = muligeOrd.get(new Random().nextInt(muligeOrd.size()));
         opdaterSynligtOrd();
+        startMillis = System.currentTimeMillis();
     }
 
 
@@ -170,6 +171,15 @@ public class Logic {
         nulstil();
     }
 
+
+    public int generateHighScore(){
+
+        endMillis = System.currentTimeMillis();
+        long milliScore = (endMillis-startMillis)/100;
+        int millscoreRoundUp = Math.round(milliScore);
+        System.out.print(ordet.length()*millscoreRoundUp);
+        return ordet.length()*millscoreRoundUp;
+    }
 
     }
 

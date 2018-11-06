@@ -101,7 +101,7 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
                 }
                 else if(gameLogic.erSpilletVundet() == true){
 
-                    builder.setTitle("Yay! Du vandt! Ordet var:  " + gameLogic.getOrdet());
+                    builder.setTitle("Yay! Du vandt! Ordet var:  " + gameLogic.getOrdet() +" Score "+gameLogic.generateHighScore());
                     builder.setMessage("Tryk på knappen for at spille igen");
 
                     builder.setPositiveButton("Nyt Spil", new DialogInterface.OnClickListener() {
@@ -110,6 +110,7 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
                             gameLogic.nulstil();
                             onReload();
                             dialog.cancel();
+
                         }
                     });
                     builder.show();
@@ -150,16 +151,23 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
     }
 
 
-    public void setNewScore(int wordLength,int position, String name){
+    public void setNewScore(String name, int score){
+
         editor = pm.edit();
+        int position = 0;
         if(position == 1){
             editor.putString(getString(R.string.H3_name), getString(R.string.H2_name));
-            editor.putString(getString(R.string.H2_name), getString(R.string.H1_name));
+            editor.putString(getString(R.string.H2_name), "H.1");
             editor.putString(getString(R.string.H1_name), name);
+
+            editor.putString("H3_Score", "H2_Word");
+            editor.putString("H2_Score", getString(R.string.H1_Word));
+            editor.putString("H1_Score", gameLogic.getOrdet());
+
 
             editor.putInt((String.valueOf(R.integer.H3_Score)), R.integer.H2_Score);
             editor.putInt((String.valueOf(R.integer.H2_Score)), R.integer.H1_Score);
-            editor.putInt((String.valueOf(R.integer.H1_Score)), wordLength);
+            editor.putInt((String.valueOf(R.integer.H1_Score)), score);
 
         } else if(position == 2){
 
@@ -167,12 +175,12 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
             editor.putString(getString(R.string.H2_name), name);
 
             editor.putInt((String.valueOf(R.integer.H3_Score)), R.integer.H2_Score);
-            editor.putInt((String.valueOf(R.integer.H2_Score)), wordLength);
+            editor.putInt((String.valueOf(R.integer.H2_Score)), score);
 
 
         } else if(position == 3) {
             editor.putString(getString(R.string.H3_name), name);
-            editor.putInt((String.valueOf(R.integer.H3_Score)), wordLength);
+            editor.putInt((String.valueOf(R.integer.H3_Score)), score);
         }
     }
 

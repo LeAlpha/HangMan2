@@ -3,4 +3,7 @@
     <string name="H1_name">H.1</string>
     <string name="H2_name">H.2</string>
     <string name="H3_name">H.3</string>
+    <string name="H1_Word">"Test1"</string>
+    <string name="H2_Word">"Test2"</string>
+    <string name="H3_Word">"Test3"</string>
 </resources>
