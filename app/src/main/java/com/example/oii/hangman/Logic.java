@@ -58,7 +58,7 @@ public class Logic {
 
     public Logic() {
         muligeOrd.add("b");
-   /*     muligeOrd.add("computer");
+        muligeOrd.add("computer");
         muligeOrd.add("programmering");
         muligeOrd.add("motorvej");
         muligeOrd.add("busrute");
@@ -67,7 +67,7 @@ public class Logic {
         muligeOrd.add("solsort");
         muligeOrd.add("seksten");
         muligeOrd.add("sytten");
-        muligeOrd.add("atten");*/
+        muligeOrd.add("atten");
         nulstil();
     }
 
@@ -177,7 +177,7 @@ public class Logic {
         endMillis = System.currentTimeMillis();
         long milliScore = (endMillis-startMillis)/100;
         int millscoreRoundUp = Math.round(milliScore);
-        return (ordet.length()*millscoreRoundUp)/antalForkerteBogstaver;
+        return (ordet.length()*millscoreRoundUp);
         }
 
     } //slut

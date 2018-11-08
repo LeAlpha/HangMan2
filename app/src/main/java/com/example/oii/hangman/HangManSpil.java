@@ -8,6 +8,7 @@ import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -146,13 +147,35 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
         builder.setPositiveButton("Nyt Spil", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                putNewHighScore(" insert name 2");
+
                 gameLogic.nulstil();
                 onReload();
                 dialog.cancel();
+
             }
         });
         builder.show();
+        if(calculateHighscorePosition(gameLogic.generateHighScore())!=4){
+            AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+            builder2.setTitle("Du kom på highscore listen! Skriv dit navn!");
+
+            final EditText input = new EditText(this);
+
+            input.setInputType(InputType.TYPE_CLASS_TEXT);
+            builder2.setView(input);
+
+
+            builder2.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String name = input.getText().toString();
+                    putNewHighScore(name);
+                }
+            });
+            builder2.show();
+
+        }
+
 
     }
 
