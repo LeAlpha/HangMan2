@@ -58,7 +58,7 @@ public class Logic {
 
     public Logic() {
         muligeOrd.add("bil");
-        muligeOrd.add("computer");
+   /*     muligeOrd.add("computer");
         muligeOrd.add("programmering");
         muligeOrd.add("motorvej");
         muligeOrd.add("busrute");
@@ -67,7 +67,7 @@ public class Logic {
         muligeOrd.add("solsort");
         muligeOrd.add("seksten");
         muligeOrd.add("sytten");
-        muligeOrd.add("atten");
+        muligeOrd.add("atten");*/
         nulstil();
     }
 
@@ -179,7 +179,7 @@ public class Logic {
         int millscoreRoundUp = Math.round(milliScore);
         System.out.print(ordet.length()*millscoreRoundUp);
         return ordet.length()*millscoreRoundUp;
-    }
+        }
 
-    }
+    } //slut
 

@@ -28,7 +28,7 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hangmanspil);
-        pm = (SharedPreferences) PreferenceManager.getDefaultSharedPreferences(this);
+        pm = (SharedPreferences) getSharedPreferences("HighscoreInfo", MODE_PRIVATE);
 
 
         goKnap = findViewById(R.id.GoButton);
@@ -73,50 +73,19 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
 
 
         if (v == goKnap) {
-
             gameLogic.gætBogstav(inputFelt.getText().toString());
             wordSoFar.setText(gameLogic.getSynligtOrd());
             usedLetters.setText(gameLogic.getBrugteBogstaver());
-
-
             updatePicture();
             inputFelt.setText("");
 
-
             if(gameLogic.erSpilletSlut() == true){
-                AlertDialog.Builder builder = new AlertDialog.Builder(HangManSpil.this);
-                builder.setCancelable(false);
                 if(gameLogic.erSpilletTabt() == true){
-                    builder.setTitle("U DED ");
-                    builder.setMessage("Ordet var: " + gameLogic.getOrdet() + "\nTryk på knappen for at spille igen");
-                    builder.setNegativeButton("Nyt Spil", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            gameLogic.nulstil();
-                            onReload();
-                            dialog.cancel();
-                        }
-                    });
-                    builder.show();
+                    alertboxLost();
                 }
                 else if(gameLogic.erSpilletVundet() == true){
-
-                    builder.setTitle("Yay! Du vandt! Ordet var:  " + gameLogic.getOrdet() +" Score "+gameLogic.generateHighScore());
-                    builder.setMessage("Tryk på knappen for at spille igen");
-
-                    builder.setPositiveButton("Nyt Spil", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            gameLogic.nulstil();
-                            onReload();
-                            dialog.cancel();
-
-                        }
-                    });
-                    builder.show();
-
+                    alertboxWon();
                 }
-
             }
         }
 
@@ -150,39 +119,50 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
         }
     }
 
+    public void alertboxLost(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(HangManSpil.this);
+        builder.setCancelable(false);
+
+            builder.setTitle("U DED ");
+            builder.setMessage("Ordet var: " + gameLogic.getOrdet() + "\nTryk på knappen for at spille igen");
+            builder.setNegativeButton("Nyt Spil", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    gameLogic.nulstil();
+                    onReload();
+                    dialog.cancel();
+                }
+            });
+            builder.show();
+    }
+
+    public void alertboxWon(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(HangManSpil.this);
+        builder.setCancelable(false);
+        builder.setTitle("Yay! Du vandt! Ordet var:  " + gameLogic.getOrdet() +" Score "+gameLogic.generateHighScore());
+        builder.setMessage("Tryk på knappen for at spille igen");
+
+        builder.setPositiveButton("Nyt Spil", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                putNewHighScore();
+                gameLogic.nulstil();
+                onReload();
+                dialog.cancel();
+            }
+        });
+        builder.show();
+
+    }
 
     public void setNewScore(String name, int score){
 
-        editor = pm.edit();
-        int position = 0;
-        if(position == 1){
-            editor.putString(getString(R.string.H3_name), getString(R.string.H2_name));
-            editor.putString(getString(R.string.H2_name), "H.1");
-            editor.putString(getString(R.string.H1_name), name);
 
-            editor.putString("H3_Score", "H2_Word");
-            editor.putString("H2_Score", getString(R.string.H1_Word));
-            editor.putString("H1_Score", gameLogic.getOrdet());
-
-
-            editor.putInt((String.valueOf(R.integer.H3_Score)), R.integer.H2_Score);
-            editor.putInt((String.valueOf(R.integer.H2_Score)), R.integer.H1_Score);
-            editor.putInt((String.valueOf(R.integer.H1_Score)), score);
-
-        } else if(position == 2){
-
-            editor.putString(getString(R.string.H3_name), getString(R.string.H2_name));
-            editor.putString(getString(R.string.H2_name), name);
-
-            editor.putInt((String.valueOf(R.integer.H3_Score)), R.integer.H2_Score);
-            editor.putInt((String.valueOf(R.integer.H2_Score)), score);
-
-
-        } else if(position == 3) {
-            editor.putString(getString(R.string.H3_name), name);
-            editor.putInt((String.valueOf(R.integer.H3_Score)), score);
-        }
     }
 
+
+    public void putNewHighScore(){
+ }
 
 }

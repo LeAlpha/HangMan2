@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".HangManSpil" />
-        <activity android:name=".Highscore"></activity>
+        <activity android:name=".Highscore" />
+
     </application>
 
 </manifest>

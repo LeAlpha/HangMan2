@@ -4,12 +4,15 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
-public class Highscore extends AppCompatActivity {
+public class Highscore extends AppCompatActivity implements View.OnClickListener {
 
     SharedPreferences pf;
     TextView tv;
+    Button update;
     String hs1_name, hs2_name, hs3_name, hs1_word, hs2_word, hs3_word;
     int hs1_value, hs2_value, hs3_value;
 
@@ -19,11 +22,14 @@ public class Highscore extends AppCompatActivity {
         setContentView(R.layout.activity_highscore);
 
 
-        pf = (SharedPreferences) PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = pf.edit();
+        pf = PreferenceManager.getDefaultSharedPreferences(this);
 
         tv = findViewById(R.id.textfield_HighScore);
         tv.setText(highscoreText());
+
+
+        update = (Button) findViewById(R.id.updateButton);
+        update.setOnClickListener(this);
     }
 
     public String highscoreText(){
@@ -37,16 +43,13 @@ public class Highscore extends AppCompatActivity {
 
 
 
-    public String loadHighScore(){
-        hs1_name = pf.getString(getString(R.string.H1_name), "Navn 1");
-        hs2_name = pf.getString(getString(R.string.H1_name), "Navn 2");
-        hs3_name = pf.getString(getString(R.string.H1_name), "Navn 3");
-        hs1_word = pf.getString("Word", "Ord1");
-        hs2_word = pf.getString("Word", "Ord2");
-        hs3_word = pf.getString("Word", "Ord3");
-        hs1_value = pf.getInt(String.valueOf(R.integer.H1_Score), 0);
-        hs2_value = pf.getInt(String.valueOf(R.integer.H2_Score), 0);
-        hs3_value = pf.getInt(String.valueOf(R.integer.H3_Score), 0);
-        return null;
+    public void loadHighScore() {
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        if(v == update){    highscoreText();}
+
     }
 }

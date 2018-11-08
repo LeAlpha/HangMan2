@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer name="H1_Score">0</integer>
-    <integer name="H2_Score">0</integer>
-    <integer name="H3_Score">0</integer>
+    <integer name="H1_Score">1</integer>
+    <integer name="H2_Score">2</integer>
+    <integer name="H3_Score">3</integer>
+
+
 </resources>
