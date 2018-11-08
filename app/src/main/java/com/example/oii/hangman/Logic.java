@@ -57,7 +57,7 @@ public class Logic {
     }
 
     public Logic() {
-        muligeOrd.add("bil");
+        muligeOrd.add("b");
    /*     muligeOrd.add("computer");
         muligeOrd.add("programmering");
         muligeOrd.add("motorvej");
@@ -177,8 +177,7 @@ public class Logic {
         endMillis = System.currentTimeMillis();
         long milliScore = (endMillis-startMillis)/100;
         int millscoreRoundUp = Math.round(milliScore);
-        System.out.print(ordet.length()*millscoreRoundUp);
-        return ordet.length()*millscoreRoundUp;
+        return (ordet.length()*millscoreRoundUp)/antalForkerteBogstaver;
         }
 
     } //slut

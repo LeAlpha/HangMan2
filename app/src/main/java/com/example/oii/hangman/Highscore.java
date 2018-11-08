@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class Highscore extends AppCompatActivity implements View.OnClickListener {
 
-    SharedPreferences pf;
+    SharedPreferences pm;
     TextView tv;
     Button update;
     String hs1_name, hs2_name, hs3_name, hs1_word, hs2_word, hs3_word;
@@ -22,7 +22,6 @@ public class Highscore extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.activity_highscore);
 
 
-        pf = PreferenceManager.getDefaultSharedPreferences(this);
 
         tv = findViewById(R.id.textfield_HighScore);
         tv.setText(highscoreText());
@@ -34,8 +33,8 @@ public class Highscore extends AppCompatActivity implements View.OnClickListener
 
     public String highscoreText(){
         loadHighScore();
-        return "1. \t"+ hs1_name + "\t " + hs1_value + "\t" + hs1_word +"\n" +
-                "2. \t"+ hs2_name +"\t " + hs2_value + "\t" + hs2_word + "\n" +
+        return "1. \t"+ hs1_name + "\t " + hs1_value + "\t" + hs1_word +"\n"
+                +"2. \t"+ hs2_name +"\t " + hs2_value + "\t" + hs2_word + "\n" +
                 "3. \t"+ hs3_name + "\t " + hs3_value + "\t" + hs3_word;
 
 
@@ -44,6 +43,19 @@ public class Highscore extends AppCompatActivity implements View.OnClickListener
 
 
     public void loadHighScore() {
+        pm = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor myEditor = pm.edit();
+        hs1_name = pm.getString("H1Name", "blankName");
+        hs1_word = pm.getString("H1Word", "BlankWord");
+        hs1_value = pm.getInt("H1Score", 000);
+
+        hs2_name = pm.getString("H2Name", "blankName");
+        hs2_word = pm.getString("H2Word", "BlankWord");
+        hs2_value = pm.getInt("H2Score", 000);
+
+        hs3_name = pm.getString("H3Name", "blankName");
+        hs3_word = pm.getString("H3Word", "BlankWord");
+        hs3_value = pm.getInt("H3Score", 000);
     }
 
 

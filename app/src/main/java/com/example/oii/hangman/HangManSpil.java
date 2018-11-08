@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -22,13 +23,12 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
     TextView wordSoFar, usedLetters;
     ImageView picture;
     SharedPreferences pm;
-    SharedPreferences.Editor editor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hangmanspil);
-        pm = (SharedPreferences) getSharedPreferences("HighscoreInfo", MODE_PRIVATE);
 
 
         goKnap = findViewById(R.id.GoButton);
@@ -146,7 +146,7 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
         builder.setPositiveButton("Nyt Spil", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                putNewHighScore();
+                putNewHighScore(" insert name 2");
                 gameLogic.nulstil();
                 onReload();
                 dialog.cancel();
@@ -156,13 +156,75 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
 
     }
 
-    public void setNewScore(String name, int score){
 
+
+
+    public void putNewHighScore(String name){
+        pm = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor myEditor = pm.edit();
+        int position = calculateHighscorePosition(gameLogic.generateHighScore());
+        System.out.println("HER!! "+position);
+
+        if(position == 1){
+            myEditor.putString("H3Name" , pm.getString("H2Name", ""));
+            myEditor.putString("H2Name" , pm.getString("H1Name", ""));
+            myEditor.putString("H1Name" , name );
+
+
+            myEditor.putString("H3Word" , pm.getString("H2Word", ""));
+            myEditor.putString("H2Word" , pm.getString("H1Word", ""));
+            myEditor.putString("H1Word" , gameLogic.getOrdet() );
+
+            myEditor.putInt("H3Score", pm.getInt("H2Score", 0));
+            myEditor.putInt("H2Score", pm.getInt("H1Score", 0));
+            myEditor.putInt("H1Score", gameLogic.generateHighScore());
+
+        }
+        else if(position== 2){
+            myEditor.putString("H3Name" , pm.getString("H2Name", ""));
+            myEditor.putString("H2Name" , name );
+
+            myEditor.putString("H3Word" , pm.getString("H2Word", ""));
+            myEditor.putString("H2Word" , gameLogic.getOrdet() );
+
+            myEditor.putInt("H3Score", pm.getInt("H2Score", 0));
+            myEditor.putInt("H2Score", gameLogic.generateHighScore());
+        }
+        else if(position== 3){
+            myEditor.putString("H3Name" , name);
+
+            myEditor.putString("H3Word" , gameLogic.getOrdet());
+
+            myEditor.putInt("H3Score", gameLogic.generateHighScore());
+        }
+        else if(position== 4){
+
+        }
+
+        myEditor.commit();
+
+        /*
+        myEditor.putInt("H1Score", gameLogic.generateHighScore());
+        myEditor.putString("H2Name", "Navn2");
+        myEditor.putString("H1Word", "Still vorking!");
+        myEditor.commit();
+*/
 
     }
 
 
-    public void putNewHighScore(){
- }
+ public int calculateHighscorePosition(int score){
+     pm = PreferenceManager.getDefaultSharedPreferences(this);
+     int hs1 = pm.getInt("H1Score", 0);
+     int hs2 = pm.getInt("H2Score", 0);
+     int hs3 = pm.getInt("H3Score", 0);
 
+
+        if(score > hs1){ return 1; }
+        else if (score >hs2){return 2;}
+        else if(score > hs3){ return 3;}
+        else{return 4;}
+
+
+ }
 }
