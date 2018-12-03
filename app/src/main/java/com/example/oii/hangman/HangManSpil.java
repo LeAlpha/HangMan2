@@ -16,15 +16,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 
 public class HangManSpil extends AppCompatActivity implements View.OnClickListener {
     Logic gameLogic = new Logic();
-    Button goKnap, nyeOrd;
-    EditText inputFelt;
+    Button nyeOrd;
+    Button q, w, e, r, t, y, u, i, o, p, å, a, s, d, f, g, h, j, k, l, æ, ø, z, x, c, v, b, n, m;
+
     TextView wordSoFar, usedLetters;
     ImageView picture;
     SharedPreferences pm;
-
+    String input;
+    ArrayList<Button> keyboard = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,16 +36,19 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_hangmanspil);
 
 
-        goKnap = findViewById(R.id.GoButton);
         nyeOrd = findViewById(R.id.newWords);
-        inputFelt = findViewById(R.id.inputField);
         wordSoFar = findViewById(R.id.showWord);
         usedLetters = findViewById(R.id.usedLettersField);
         picture = findViewById(R.id.Picture);
 
-        onReload();
+        giveButtonID();
+        addButtonToArray();
 
-        goKnap.setOnClickListener(this);
+        onReload();
+        for (Button bn : keyboard) {
+            bn.setOnClickListener(this);
+        }
+
         nyeOrd.setOnClickListener(this);
 
     }
@@ -50,7 +57,7 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
 
 
-        class async extends AsyncTask{
+        class async extends AsyncTask {
 
             @Override
             protected Object doInBackground(Object[] objects) {
@@ -63,45 +70,58 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
                 }
                 return null;
             }
-        @Override
-        protected void onPostExecute(Object result) {
+
+            @Override
+            protected void onPostExecute(Object result) {
                 nyeOrd.setText("Nye ord");
                 gameLogic.nulstil();
                 onReload();
-            Toast.makeText(HangManSpil.this, "Nye ord er hentet :) ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HangManSpil.this, "Nye ord er hentet :) ", Toast.LENGTH_SHORT).show();
             }
         }
 
+        if(keyboard.contains(v)){
+            int index = returnButtonIndex(v);
+            keyboard.get(index).setEnabled(false);
+            input = keyboard.get(index).getText().toString().toLowerCase();
 
-        if (v == goKnap) {
-            gameLogic.gætBogstav(inputFelt.getText().toString());
+
+            gameLogic.gætBogstav(input);
             wordSoFar.setText(gameLogic.getSynligtOrd());
             usedLetters.setText(gameLogic.getBrugteBogstaver());
             updatePicture();
-            inputFelt.setText("");
 
-            if(gameLogic.erSpilletSlut() == true){
-                if(gameLogic.erSpilletTabt() == true){
+
+            if (gameLogic.erSpilletSlut() == true) {
+                if (gameLogic.erSpilletTabt() == true) {
                     alertboxLost();
-                }
-                else if(gameLogic.erSpilletVundet() == true){
+                } else if (gameLogic.erSpilletVundet() == true) {
                     alertboxWon();
                 }
             }
         }
 
-        else if(v == nyeOrd){
+
+        else if (v == nyeOrd) {
             new async().execute();
 
         }
-
+        else{
+            System.err.println("Knappen er ikke tilføjet til keyboard");
+        }
     }
+
+
+
 
     public void onReload(){
         wordSoFar.setText(gameLogic.getSynligtOrd());
         picture.setImageResource(R.drawable.galge);
         usedLetters.setText("");
-        inputFelt.setText("");
+        for(Button bt : keyboard) {
+            bt.setEnabled(true);
+           // bt.setBackground();
+        }
     }
 
     public void updatePicture(){
@@ -180,8 +200,6 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
     }
 
 
-
-
     public void putNewHighScore(String name){
         pm = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor myEditor = pm.edit();
@@ -234,6 +252,83 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
 */
 
     }
+
+
+    public void addButtonToArray(){
+        keyboard.add(this.q);
+        keyboard.add(this.w);
+        keyboard.add(this.e);
+        keyboard.add(this.r);
+        keyboard.add(this.t);
+        keyboard.add(this.y);
+        keyboard.add(this.u);
+        keyboard.add(this.i);
+        keyboard.add(this.o);
+        keyboard.add(this.p);
+        keyboard.add(this.å);
+        keyboard.add(this.a);
+        keyboard.add(this.s);
+        keyboard.add(this.d);
+        keyboard.add(this.f);
+        keyboard.add(this.g);
+        keyboard.add(this.h);
+        keyboard.add(this.j);
+        keyboard.add(this.k);
+        keyboard.add(this.l);
+        keyboard.add(this.æ);
+        keyboard.add(this.ø);
+        keyboard.add(this.z);
+        keyboard.add(this.x);
+        keyboard.add(this.c);
+        keyboard.add(this.v);
+        keyboard.add(this.b);
+        keyboard.add(this.n);
+        keyboard.add(this.m);
+
+    }
+    public void giveButtonID(){
+        this.q = findViewById(R.id.buttonQ);
+        this.w = findViewById(R.id.buttonW);
+        this.e = findViewById(R.id.buttonE);
+        this.r = findViewById(R.id.buttonR);
+        this.t = findViewById(R.id.buttonT);
+        this.y = findViewById(R.id.buttonY);
+        this.u = findViewById(R.id.buttonU);
+        this.i = findViewById(R.id.buttonI);
+        this.o = findViewById(R.id.buttonO);
+        this.p = findViewById(R.id.buttonP);
+        this.å = findViewById(R.id.buttonAA);
+        this.a = findViewById(R.id.buttonA);
+        this.s = findViewById(R.id.buttonS);
+        this.d = findViewById(R.id.buttonD);
+        this.f = findViewById(R.id.buttonF);
+        this.g = findViewById(R.id.buttonG);
+        this.h = findViewById(R.id.buttonH);
+        this.j = findViewById(R.id.buttonJ);
+        this.k = findViewById(R.id.buttonK);
+        this.l = findViewById(R.id.buttonL);
+        this.æ = findViewById(R.id.buttonAE);
+        this.ø = findViewById(R.id.buttonEO);
+        this.z = findViewById(R.id.buttonZ);
+        this.x = findViewById(R.id.buttonX);
+        this.c = findViewById(R.id.buttonC);
+        this.v = findViewById(R.id.buttonV);
+        this.b = findViewById(R.id.buttonB);
+        this.n = findViewById(R.id.buttonN);
+        this.m = findViewById(R.id.buttonM);
+
+
+    }
+
+    public int returnButtonIndex(View v){
+
+    for(int i = 0; i < keyboard.size(); i++)
+        if(v == keyboard.get(i))
+            return i;
+
+        return 99;
+    }
+
 
 
  public int calculateHighscorePosition(int score){
