@@ -1,7 +1,11 @@
 package com.example.oii.hangman;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -17,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class HangManSpil extends AppCompatActivity implements View.OnClickListener {
@@ -29,11 +34,14 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
     SharedPreferences pm;
     String input;
     ArrayList<Button> keyboard = new ArrayList();
+    SoundPool soundplayer;
+    private HashMap sounds = new HashMap();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hangmanspil);
+        SoundpoolPlayer(this);
 
 
         nyeOrd = findViewById(R.id.newWords);
@@ -77,6 +85,7 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
                 gameLogic.nulstil();
                 onReload();
                 Toast.makeText(HangManSpil.this, "Nye ord er hentet :) ", Toast.LENGTH_SHORT).show();
+
             }
         }
 
@@ -94,8 +103,10 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
 
             if (gameLogic.erSpilletSlut() == true) {
                 if (gameLogic.erSpilletTabt() == true) {
+                    soundplayer.play(1, 0.99f, 099f, 0, 0 , 1);
                     alertboxLost();
                 } else if (gameLogic.erSpilletVundet() == true) {
+                    soundplayer.play(2, 0.99f, 099f, 0, 0 , 1);
                     alertboxWon();
                 }
             }
@@ -345,4 +356,11 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
 
 
  }
+
+    public void SoundpoolPlayer(Context pcontext){
+        this.soundplayer = new SoundPool(4, AudioManager.STREAM_MUSIC, 0);
+        sounds.put(R.raw.smb_mariodie, this.soundplayer.load(pcontext, R.raw.smb_mariodie, 1));
+        sounds.put(R.raw.smb_powerup, this.soundplayer.load(pcontext, R.raw.smb_powerup, 1));
+    }
 }
+
