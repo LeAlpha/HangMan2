@@ -7,6 +7,11 @@
     tools:context=".HangManSpil"
     tools:layout_editor_absoluteY="25dp">
 
+    <nl.dionsegijn.konfetti.KonfettiView
+        android:id="@+id/viewKonfetti"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <TextView
         android:id="@+id/usedLettersField"
         android:layout_width="0dp"

@@ -103,10 +103,11 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
 
             if (gameLogic.erSpilletSlut() == true) {
                 if (gameLogic.erSpilletTabt() == true) {
-                    soundplayer.play(1, 0.99f, 099f, 0, 0 , 1);
+                    soundplayer.play(2, 0.99f, 099f, 0, 0 , 1);
+
                     alertboxLost();
                 } else if (gameLogic.erSpilletVundet() == true) {
-                    soundplayer.play(2, 0.99f, 099f, 0, 0 , 1);
+                    soundplayer.play(3, 0.99f, 099f, 0, 0 , 1);
                     alertboxWon();
                 }
             }
@@ -129,9 +130,11 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
         wordSoFar.setText(gameLogic.getSynligtOrd());
         picture.setImageResource(R.drawable.galge);
         usedLetters.setText("");
+        soundplayer.play(1, 0.99f, 099f, 0, 0 , 1);
         for(Button bt : keyboard) {
             bt.setEnabled(true);
            // bt.setBackground();
+
         }
     }
 
@@ -359,8 +362,10 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
 
     public void SoundpoolPlayer(Context pcontext){
         this.soundplayer = new SoundPool(4, AudioManager.STREAM_MUSIC, 0);
+        sounds.put(R.raw.sm64_key_get, this.soundplayer.load(pcontext, R.raw.sm64_key_get, 1));
         sounds.put(R.raw.smb_mariodie, this.soundplayer.load(pcontext, R.raw.smb_mariodie, 1));
         sounds.put(R.raw.smb_powerup, this.soundplayer.load(pcontext, R.raw.smb_powerup, 1));
+
     }
 }
 

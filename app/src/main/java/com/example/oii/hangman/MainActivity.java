@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     SharedPreferences sp;
-    Button startSpilKnap, highscoreKnap;
+    Button startSpilKnap, highscoreKnap, reglerknap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +23,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         startSpilKnap = findViewById(R.id.GoToGameButton);
         highscoreKnap = findViewById(R.id.hsButton);
+        reglerknap = findViewById(R.id.rules_btn);
         startSpilKnap.setOnClickListener(this);
         highscoreKnap.setOnClickListener(this);
+        reglerknap.setOnClickListener(this);
 
 
 
@@ -38,6 +40,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else if (v == highscoreKnap) {
             Intent browser = new Intent(this , Highscore.class);
+            startActivity(browser);
+        }
+        else if (v == reglerknap){
+            Intent browser = new Intent(this, Rules.class);
             startActivity(browser);
         }
     }
