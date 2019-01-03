@@ -127,10 +127,10 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
 
 
     public void onReload(){
+        soundplayer.play(1, 0.99f, 099f, 0, 0 , 1);
         wordSoFar.setText(gameLogic.getSynligtOrd());
         picture.setImageResource(R.drawable.galge);
         usedLetters.setText("");
-        soundplayer.play(1, 0.99f, 099f, 0, 0 , 1);
         for(Button bt : keyboard) {
             bt.setEnabled(true);
            // bt.setBackground();
@@ -333,7 +333,6 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
 
 
     }
-
     public int returnButtonIndex(View v){
 
     for(int i = 0; i < keyboard.size(); i++)
@@ -342,10 +341,7 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
 
         return 99;
     }
-
-
-
- public int calculateHighscorePosition(int score){
+    public int calculateHighscorePosition(int score){
      pm = PreferenceManager.getDefaultSharedPreferences(this);
      int hs1 = pm.getInt("H1Score", 0);
      int hs2 = pm.getInt("H2Score", 0);
@@ -359,7 +355,6 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
 
 
  }
-
     public void SoundpoolPlayer(Context pcontext){
         this.soundplayer = new SoundPool(4, AudioManager.STREAM_MUSIC, 0);
         sounds.put(R.raw.sm64_key_get, this.soundplayer.load(pcontext, R.raw.sm64_key_get, 1));
