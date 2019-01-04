@@ -24,9 +24,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startSpilKnap = findViewById(R.id.GoToGameButton);
         highscoreKnap = findViewById(R.id.hsButton);
         reglerknap = findViewById(R.id.rules_btn);
+
         startSpilKnap.setOnClickListener(this);
         highscoreKnap.setOnClickListener(this);
         reglerknap.setOnClickListener(this);
+
 
 
 
@@ -46,5 +48,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent browser = new Intent(this, Rules.class);
             startActivity(browser);
         }
+
     }
 }

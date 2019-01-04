@@ -12,23 +12,23 @@
         android:id="@+id/rules_btn"
         android:layout_width="104dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="217dp"
+        android:layout_marginBottom="11dp"
         android:text="Regler"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/GoToGameButton"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.595" />
+        app:layout_constraintBottom_toTopOf="@+id/hsButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/GoToGameButton" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="212dp"
         android:layout_height="0dp"
         android:layout_marginTop="55dp"
-        android:layout_marginBottom="146dp"
+        android:layout_marginBottom="30dp"
         android:gravity="center"
         android:text="Velkommen til Hangman!"
         android:textAppearance="@android:style/TextAppearance.Large"
-        app:layout_constraintBottom_toTopOf="@+id/hsButton"
+        app:layout_constraintBottom_toTopOf="@+id/GoToGameButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -38,14 +38,11 @@
         android:id="@+id/GoToGameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="333dp"
+        android:layout_marginBottom="9dp"
         android:text="Start Spil!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintBottom_toTopOf="@+id/rules_btn"
+        app:layout_constraintStart_toStartOf="@+id/rules_btn"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/hsButton"
@@ -54,7 +51,8 @@
         android:layout_marginBottom="217dp"
         android:text="Highscore"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/GoToGameButton"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rules_btn" />
 
 </android.support.constraint.ConstraintLayout>

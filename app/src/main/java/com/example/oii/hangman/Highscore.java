@@ -9,8 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import nl.dionsegijn.konfetti.KonfettiView;
-import nl.dionsegijn.konfetti.models.Shape;
 
 public class Highscore extends AppCompatActivity implements View.OnClickListener {
 
@@ -20,7 +18,6 @@ public class Highscore extends AppCompatActivity implements View.OnClickListener
     String hs1_name, hs2_name, hs3_name, hs1_word, hs2_word, hs3_word;
     int hs1_value, hs2_value, hs3_value;
 
-    KonfettiView konfettiView;
 
 
     @Override

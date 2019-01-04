@@ -20,7 +20,8 @@
         </activity>
         <activity android:name=".HangManSpil" />
         <activity android:name=".Highscore" />
-        <activity android:name=".Rules"></activity>
+        <activity android:name=".Rules" />
+        <activity android:name=".WordsToGuess"></activity>
     </application>
 
 </manifest>

@@ -2,6 +2,7 @@ package com.example.oii.hangman;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -26,7 +27,7 @@ import java.util.HashMap;
 
 public class HangManSpil extends AppCompatActivity implements View.OnClickListener {
     Logic gameLogic = new Logic();
-    Button nyeOrd;
+    Button nyeOrd, ordlisteknap;
     Button q, w, e, r, t, y, u, i, o, p, å, a, s, d, f, g, h, j, k, l, æ, ø, z, x, c, v, b, n, m;
 
     TextView wordSoFar, usedLetters;
@@ -48,6 +49,8 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
         wordSoFar = findViewById(R.id.showWord);
         usedLetters = findViewById(R.id.usedLettersField);
         picture = findViewById(R.id.Picture);
+        ordlisteknap = findViewById(R.id.wordlistbtn);
+
 
         giveButtonID();
         addButtonToArray();
@@ -58,7 +61,7 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
         }
 
         nyeOrd.setOnClickListener(this);
-
+        ordlisteknap.setOnClickListener(this);
     }
 
     @Override
@@ -118,8 +121,10 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
             new async().execute();
 
         }
-        else{
-            System.err.println("Knappen er ikke tilføjet til keyboard");
+        else if (v == ordlisteknap){
+            Intent browser = new Intent(this, WordsToGuess.class);
+            browser.putExtra("arraylist", gameLogic.muligeOrd);
+            startActivity(browser);
         }
     }
 
