@@ -23,19 +23,21 @@
         android:textColor="#000"
         android:layout_toRightOf="@id/listImage"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="110dp"
         />
 
     <TextView
         android:id="@+id/listTextPlayer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/listTextWord"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/listImage"
+
         android:text="Player"
-        android:textColor="#000"
-        android:layout_toRightOf="@id/listTextWord"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="60dp"
-        />
+        android:textColor="#000" />
 
     <TextView
         android:id="@+id/listTextScore"
@@ -43,9 +45,10 @@
         android:layout_height="wrap_content"
         android:text="Score"
         android:textColor="#000"
-        android:layout_toRightOf="@id/listTextPlayer"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="60dp"
+        android:layout_toRightOf="@id/listImage"
+        android:layout_marginTop="10dp"
+
+        android:layout_marginLeft="110dp"
         />
 
 </RelativeLayout>
