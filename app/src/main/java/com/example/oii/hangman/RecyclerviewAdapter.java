@@ -38,9 +38,8 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
         viewHolder.text2.setText(score.get(i).toString());
         viewHolder.text3.setText(player.get(i));
 
-        if(i == 1){viewHolder.image.setImageResource(R.drawable.gold);}
-        if(i == 2){viewHolder.image.setImageResource(R.drawable.silver);}
-        if(i == 3){viewHolder.image.setImageResource(R.drawable.bronze);}
+        if(i == 1){viewHolder.image.setImageResource(R.drawable.silver);}
+        if(i == 2){viewHolder.image.setImageResource(R.drawable.bronze);}
     }
 
     @Override
