@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    android:id="@+id/rellayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+
+    >
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/listImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/gold"
+        />
+
+    <TextView
+        android:id="@+id/listTextWord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WORD"
+        android:textColor="#000"
+        android:layout_toRightOf="@id/listImage"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="60dp"
+        />
+
+    <TextView
+        android:id="@+id/listTextPlayer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Player"
+        android:textColor="#000"
+        android:layout_toRightOf="@id/listTextWord"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="60dp"
+        />
+
+    <TextView
+        android:id="@+id/listTextScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Score"
+        android:textColor="#000"
+        android:layout_toRightOf="@id/listTextPlayer"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="60dp"
+        />
+
+</RelativeLayout>
