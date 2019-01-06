@@ -22,6 +22,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -38,6 +40,7 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
     ArrayList<Button> keyboard = new ArrayList();
     SoundPool soundplayer;
     private HashMap sounds = new HashMap();
+    LottieAnimationView fireworks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +48,7 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_hangmanspil);
         SoundpoolPlayer(this);
 
-
+        fireworks = findViewById(R.id.fireworksView);
         nyeOrd = findViewById(R.id.newWords);
         wordSoFar = findViewById(R.id.showWord);
         usedLetters = findViewById(R.id.usedLettersField);
@@ -91,6 +94,7 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
                 Toast.makeText(HangManSpil.this, "Nye ord er hentet :) ", Toast.LENGTH_SHORT).show();
 
             }
+
         }
 
         if(keyboard.contains(v)){
@@ -191,7 +195,7 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
     }
 
     public void alertboxWon(){
-
+        fireworks.playAnimation();
         AlertDialog.Builder builder = new AlertDialog.Builder(HangManSpil.this);
         builder.setCancelable(false);
         builder.setTitle("Yay! Du vandt! Ordet var:  " + gameLogic.getOrdet() +" Score "+gameLogic.generateHighScore());
@@ -204,7 +208,7 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
                 gameLogic.nulstil();
                 onReload();
                 dialog.cancel();
-
+        fireworks.cancelAnimation();
             }
         });
         builder.show();

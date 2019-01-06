@@ -7,6 +7,12 @@
     tools:context=".HangManSpil"
     tools:layout_editor_absoluteY="25dp">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/fireworksView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_fileName="fireworks.json"/>
+
     <Button
         android:id="@+id/wordlistbtn"
         android:layout_width="155dp"
