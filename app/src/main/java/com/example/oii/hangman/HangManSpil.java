@@ -41,6 +41,8 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
     SoundPool soundplayer;
     private HashMap sounds = new HashMap();
     LottieAnimationView fireworks;
+    MediaPlayer mp1, mp2, mp3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +56,9 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
         usedLetters = findViewById(R.id.usedLettersField);
         picture = findViewById(R.id.Picture);
         ordlisteknap = findViewById(R.id.wordlistbtn);
-
-
+        mp1 = MediaPlayer.create(this,R.raw.sm64_key_get);
+        mp2 = MediaPlayer.create(this,R.raw.smb_mariodie);
+        mp3 = MediaPlayer.create(this,R.raw.smb_powerup);
         giveButtonID();
         addButtonToArray();
 
@@ -111,11 +114,12 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
 
             if (gameLogic.erSpilletSlut() == true) {
                 if (gameLogic.erSpilletTabt() == true) {
-                    soundplayer.play(2, 0.99f, 099f, 0, 0 , 1);
-
+                    //soundplayer.play(2, 0.99f, 099f, 0, 0 , 1);
+                    mp2.start();
                     alertboxLost();
                 } else if (gameLogic.erSpilletVundet() == true) {
-                    soundplayer.play(3, 0.99f, 099f, 0, 0 , 1);
+                    //soundplayer.play(3, 0.99f, 099f, 0, 0 , 1);
+                    mp3.start();
                     alertboxWon();
                 }
             }
@@ -150,7 +154,8 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
     }
 
     public void onReload(){
-        soundplayer.play(1, 0.99f, 099f, 0, 0 , 1);
+        mp1.start();
+        //soundplayer.play(1, 0.99f, 099f, 0, 0 , 1);
         wordSoFar.setText(gameLogic.getSynligtOrd());
         picture.setImageResource(R.drawable.galge);
         usedLetters.setText("");
@@ -209,7 +214,7 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
                 gameLogic.nulstil();
                 onReload();
                 dialog.cancel();
-        //fireworks.cancelAnimation();
+
             }
         });
         builder.show();
