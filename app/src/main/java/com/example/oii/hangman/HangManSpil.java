@@ -38,8 +38,6 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
     SharedPreferences pm;
     String input;
     ArrayList<Button> keyboard = new ArrayList();
-    SoundPool soundplayer;
-    private HashMap sounds = new HashMap();
     LottieAnimationView fireworks;
     MediaPlayer mp1, mp2, mp3;
 
@@ -48,7 +46,7 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hangmanspil);
-        SoundpoolPlayer(this);
+
 
         fireworks = findViewById(R.id.fireworksView);
         nyeOrd = findViewById(R.id.newWords);
@@ -382,12 +380,6 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
 
 
  }
-    public void SoundpoolPlayer(Context pcontext){
-        this.soundplayer = new SoundPool(4, AudioManager.STREAM_MUSIC, 0);
-        sounds.put(R.raw.sm64_key_get, this.soundplayer.load(pcontext, R.raw.sm64_key_get, 1));
-        sounds.put(R.raw.smb_mariodie, this.soundplayer.load(pcontext, R.raw.smb_mariodie, 1));
-        sounds.put(R.raw.smb_powerup, this.soundplayer.load(pcontext, R.raw.smb_powerup, 1));
 
-    }
 }
 
