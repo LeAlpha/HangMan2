@@ -47,17 +47,17 @@ public class Highscore extends AppCompatActivity implements View.OnClickListener
         pm = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor myEditor = pm.edit();
 
-        word.add(pm.getString("H1Word", "BlankWord"));
-        word.add(pm.getString("H2Word", "BlankWord"));
-        word.add(pm.getString("H3Word", "BlankWord"));
+        word.add(pm.getString("H1Word", "Spil for at komme på highscore"));
+        word.add(pm.getString("H2Word", "Spil for at komme på highscore"));
+        word.add(pm.getString("H3Word", "Spil for at komme på highscore"));
 
         score.add(pm.getInt("H1Score", 000));
         score.add(pm.getInt("H2Score", 000));
         score.add(pm.getInt("H3Score", 000));
 
-        player.add(pm.getString("H1Name", "blankName"));
-        player.add(pm.getString("H2Name", "blankName"));
-        player.add(pm.getString("H3Name", "blankName"));
+        player.add(pm.getString("H1Name", "Få dit navn her"));
+        player.add(pm.getString("H2Name", "Få dit navn her"));
+        player.add(pm.getString("H3Name", "Få dit navn her"));
 
 
     }

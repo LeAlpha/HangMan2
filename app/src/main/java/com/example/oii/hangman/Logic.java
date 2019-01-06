@@ -81,7 +81,15 @@ public class Logic {
         startMillis = System.currentTimeMillis();
     }
 
-
+    public void nulstilBestemt(String nytord){
+        brugteBogstaver.clear();
+        antalForkerteBogstaver = 0;
+        spilletErVundet = false;
+        spilletErTabt = false;
+        ordet = nytord;
+        opdaterSynligtOrd();
+        startMillis = System.currentTimeMillis();
+    }
 
 
     private void opdaterSynligtOrd() {
