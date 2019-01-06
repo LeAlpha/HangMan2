@@ -141,7 +141,7 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
         if(requestCode == 1){
             if(resultCode == RESULT_OK){
                 int result = data.getIntExtra("position", 0);
-                Toast.makeText(HangManSpil.this, "no breaks" + " " + result, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(HangManSpil.this, result , Toast.LENGTH_SHORT).show();
                 gameLogic.nulstilBestemt(result);
                 onReload();
             }
@@ -154,6 +154,7 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
         wordSoFar.setText(gameLogic.getSynligtOrd());
         picture.setImageResource(R.drawable.galge);
         usedLetters.setText("");
+        fireworks.clearAnimation();
         for(Button bt : keyboard) {
             bt.setEnabled(true);
            // bt.setBackground();
@@ -208,7 +209,7 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
                 gameLogic.nulstil();
                 onReload();
                 dialog.cancel();
-        fireworks.cancelAnimation();
+        //fireworks.cancelAnimation();
             }
         });
         builder.show();
