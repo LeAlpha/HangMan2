@@ -81,12 +81,12 @@ public class Logic {
         startMillis = System.currentTimeMillis();
     }
 
-    public void nulstilBestemt(String nytord){
+    public void nulstilBestemt(int nytord){
         brugteBogstaver.clear();
         antalForkerteBogstaver = 0;
         spilletErVundet = false;
         spilletErTabt = false;
-        ordet = nytord;
+        ordet = muligeOrd.get(nytord);
         opdaterSynligtOrd();
         startMillis = System.currentTimeMillis();
     }

@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
@@ -124,12 +125,25 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
         else if (v == ordlisteknap){
             Intent browser = new Intent(this, WordsToGuess.class);
             browser.putExtra("arraylist", gameLogic.muligeOrd);
-            startActivity(browser);
+            startActivityForResult(browser, 1);
+
         }
+
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1){
+            if(resultCode == RESULT_OK){
+                int result = data.getIntExtra("position", 0);
+                Toast.makeText(HangManSpil.this, "no breaks" + " " + result, Toast.LENGTH_SHORT).show();
+                gameLogic.nulstilBestemt(result);
+                onReload();
+            }
+        }
 
-
+    }
 
     public void onReload(){
         soundplayer.play(1, 0.99f, 099f, 0, 0 , 1);
@@ -271,8 +285,6 @@ public class HangManSpil extends AppCompatActivity implements View.OnClickListen
 */
 
     }
-
-
     public void addButtonToArray(){
         keyboard.add(this.q);
         keyboard.add(this.w);

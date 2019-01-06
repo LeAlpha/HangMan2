@@ -1,5 +1,6 @@
 package com.example.oii.hangman;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,11 +28,15 @@ public class WordsToGuess extends AppCompatActivity {
         ArrayAdapter AA = new ArrayAdapter(this, android.R.layout.simple_list_item_1, android.R.id.text1, wordlistString);
         ListView lw = findViewById(R.id.LW);
         lw.setAdapter(AA);
+
         lw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(WordsToGuess.this, "Lez go" + " the position is : " + position, Toast.LENGTH_SHORT).show();
-
+                //Toast.makeText(WordsToGuess.this, "Lez go" + " the position is : " + position, Toast.LENGTH_SHORT).show();
+                Intent in = new Intent();
+                in.putExtra("position", position);
+                setResult(RESULT_OK, in);
+                finish();
             }
         });
 
